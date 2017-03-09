@@ -1,0 +1,6 @@
+framework module Pods_CollectionViewInsideTableCell {
+  umbrella header "Pods-CollectionViewInsideTableCell-umbrella.h"
+
+  export *
+  module * { export * }
+}
