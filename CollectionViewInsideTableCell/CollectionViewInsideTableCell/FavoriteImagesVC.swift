@@ -11,19 +11,16 @@ import UIKit
 class FavoriteImagesVC: UIViewController {
 
     @IBOutlet weak var favImagesCollectionView: UICollectionView!
-    let image = ImageData()
-    let CarsVCObj = CarsVC()
-    var imagesCount = 0
-    var imageArray = [Int]()
-    var i = 0
+    
+    var imageArray = [URL]()
+    var fullImageArray = [URL]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         favImagesCollectionView.dataSource = self
         favImagesCollectionView.delegate = self
         
-        imagesCount = imageArray.count
-        print(imagesCount)
         let carsCollectionViewCellNib = UINib(nibName: "CarsCollectionViewCell", bundle: nil)
         favImagesCollectionView.register(carsCollectionViewCellNib, forCellWithReuseIdentifier: "CarsCollectionViewCellID")
     }
@@ -37,17 +34,16 @@ extension FavoriteImagesVC: UICollectionViewDataSource,UICollectionViewDelegate,
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(imagesCount)
-        return imagesCount
+
+        return imageArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let favCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CarsCollectionViewCellID", for: indexPath) as! CarsCollectionViewCell
         
+        favCollectionCell.populatedData(imageArray[indexPath.item])
         favCollectionCell.favImgBtn.isHidden = true
-        favCollectionCell.populatedData(image.imageInfo[imageArray[i]] as [String:String])
-        i = i + 1
         return favCollectionCell
     }
     
@@ -61,8 +57,11 @@ extension FavoriteImagesVC: UICollectionViewDataSource,UICollectionViewDelegate,
         let storyBoardScene = UIStoryboard(name: "Main", bundle: Bundle.main)
         let fullImageNavigation = storyBoardScene.instantiateViewController(withIdentifier: "ShowingFullImageVC_ID") as! ShowingFullImageVC
         self.navigationController?.pushViewController(fullImageNavigation, animated: true)
-        fullImageNavigation.populatedData(image.imageInfo[indexPath.item] as [String:String])
         
+        
+        let url = self.fullImageArray[indexPath.item]
+        
+        fullImageNavigation.imageURL = "\(url)"
     }
     
 }

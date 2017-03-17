@@ -14,6 +14,8 @@ class ShowingFullImageVC: UIViewController {
     
     @IBOutlet weak var label: UILabel!
     
+    var imageURL = String()
+    
     var centerX = CGFloat()
     var centerY = CGFloat()
     
@@ -23,9 +25,9 @@ class ShowingFullImageVC: UIViewController {
         
         super.viewDidLoad()
         
-        fullImage.backgroundColor = UIColor(patternImage: UIImage(named: info)!)
+//        fullImage.backgroundColor = UIColor(patternImage: UIImage(named: info)!)
     
-        label.text = "" + info
+//        label.text = "" + info
         
         centerX = fullImage.center.x
         centerY = fullImage.center.y
@@ -35,15 +37,15 @@ class ShowingFullImageVC: UIViewController {
         fullImage.addGestureRecognizer(panGesture)
         
         fullImage.isUserInteractionEnabled = true
-    }
-    
-    func populatedData(_ information: [String:String]) {
-
-        let imageInfo = information["ImageUrl"]
         
-        info = imageInfo!
-    
     }
+    
+    override func viewWillLayoutSubviews() {
+        
+        let url = URL(string: imageURL)
+        fullImage.af_setImage(withURL: url!)
+    }
+    
     
     func detectPan(_ recognizer: UIPanGestureRecognizer) {
     

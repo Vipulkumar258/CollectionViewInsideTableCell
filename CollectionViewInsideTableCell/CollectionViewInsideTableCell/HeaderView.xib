@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,7 +42,7 @@
                 <outlet property="headerLabel" destination="zkF-zS-l8q" id="Z7J-G7-uJZ"/>
                 <outlet property="toggleHideShowBtn" destination="MdW-X4-lW3" id="tHh-Ef-Jri"/>
             </connections>
-            <point key="canvasLocation" x="-176.5" y="99"/>
+            <point key="canvasLocation" x="-56" y="-37"/>
         </view>
     </objects>
 </document>

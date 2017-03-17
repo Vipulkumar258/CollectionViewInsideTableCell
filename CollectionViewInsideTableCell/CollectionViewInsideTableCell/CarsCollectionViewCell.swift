@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class CarsCollectionViewCell: UICollectionViewCell {
 
@@ -17,11 +18,12 @@ class CarsCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+
+    func populatedData(_ url: URL) {
     
-    func populatedData(_ information: [String:String]) {
-        let imageInfo = information["ImageUrl"]
-        showingImage.backgroundColor = UIColor(patternImage: UIImage(named: imageInfo!)!)
+        showingImage.af_setImage(withURL : url)
     }
+
     
     override func prepareForReuse() {
         super.prepareForReuse()
